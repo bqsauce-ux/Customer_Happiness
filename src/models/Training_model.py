@@ -112,7 +112,7 @@ model_grids = {
     'RidgeClassifierCV': {}
 }
 
-data_path = 'data/raw/ACME-HappinessSurvey2020.csv' 
+data_path = 'data/processed/ACME-HappinessSurvey2020.csv' 
 data = pd.read_csv(data_path)
 X = data.drop('Y', axis=1)
 y = data['Y']
