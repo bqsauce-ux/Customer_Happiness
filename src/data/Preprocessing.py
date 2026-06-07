@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv('../../data/raw/ACME-HappinessSurvey2020.csv')
+df = pd.read_csv('data/raw/ACME-HappinessSurvey2020.csv')
 
 def replace_outliers_with_median(df, column):
     """
@@ -28,4 +28,4 @@ survey_columns = ['X1', 'X2', 'X3', 'X4', 'X5', 'X6']
 for col in survey_columns:
     df = replace_outliers_with_median(df, col)
  
-df.to_csv('../../data/processed/ACME-HappinessSurvey2020.csv', index=False)
+df.to_csv('data/processed/ACME-HappinessSurvey2020.csv', index=False)
