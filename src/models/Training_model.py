@@ -115,7 +115,7 @@ model_grids = {
     },
 
     'LinearDiscriminantAnalysis': {
-        'solver' = ['svd', 'lsqr', 'eigen']
+        'solver' : ['svd', 'lsqr', 'eigen']
     },
 
     'RidgeClassifier': {
