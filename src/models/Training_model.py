@@ -234,7 +234,7 @@ with mlflow.start_run(run_name="Customer_Happiness") if mlflow_tracking_uri else
                 
             
             print(
-            f"{name} Accuracy: {evaluation['accuracy']:.4f}, "
+            f"{name} accuracy: {evaluation['accuracy']:.4f}, "
             f"R2: {evaluation['r2']:.4f}, "
             f"RMSE: {evaluation['rmse']:.2f}, "
             f"f1_score: {evaluation['f1_score']:.4f}, "
