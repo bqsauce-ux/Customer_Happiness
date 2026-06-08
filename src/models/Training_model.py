@@ -121,7 +121,7 @@ model_grids = {
     },
 
     'RidgeClassifierCV': {
-        alphas': [[0.1, 1.0, 10.0]]
+        'alphas': [[0.1, 1.0, 10.0]]
     }
 }
 
