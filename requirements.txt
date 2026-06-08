@@ -2,6 +2,7 @@
 pandas==1.5.3          # Data manipulation and analysis — core for working with tabular data
 numpy==1.24.3          # Numerical operations, arrays, and matrix support (used by almost all ML libraries)
 
+lazypredict==0.2.12
 
 scikit-learn==1.2.2    # Classic ML models (regression, classification, clustering), preprocessing, model evaluation
 xgboost==1.7.5
