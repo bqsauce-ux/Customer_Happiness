@@ -84,7 +84,7 @@ jobs:
 
       - name: Train model
         run: |
-          python src/models/training_model.py
+          python src/models/Training_model.py
 
       - name: Upload trained model
         uses: actions/upload-artifact@v4
