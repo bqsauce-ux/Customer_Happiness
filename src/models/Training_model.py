@@ -23,6 +23,8 @@ import matplotlib.pyplot as plt
 
 import numpy as np
 import pandas as pd
+import os
+
 
 # Define models and hyperparameter grids
 models = {
@@ -58,7 +60,11 @@ models = {
 
 model_grids = {
 
-    'LogisticRegression': {},
+    'LogisticRegression': {
+        'C': [0.01, 0.1, 1, 10],
+        'penalty': ['l2'],
+        'solver': ['lbfgs']
+    },
 
     'RandomForestClassifier': {
         'n_estimators': [100, 200, 300],
@@ -94,22 +100,30 @@ model_grids = {
         'alpha': [0.1, 0.5, 1.0]
     },
 
-    'GaussianNB': {},
+    'GaussianNB': {
+        'var_smoothing': [1e-9, 1e-8, 1e-7]
+    },
 
-    'NearestCentroid': {},
+    'NearestCentroid': {
+        'metric': ['euclidean', 'manhattan']
+    },
 
     'Perceptron': {
         'penalty': [None, 'l2'],
         'alpha': [0.0001, 0.001]
     },
 
-    'LinearDiscriminantAnalysis': {},
+    'LinearDiscriminantAnalysis': {
+        'solver' : ['svd', 'lsqr', 'eigen']
+    },
 
     'RidgeClassifier': {
         'alpha': [0.1, 1.0, 10.0]
     },
 
-    'RidgeClassifierCV': {}
+    'RidgeClassifierCV': {
+        'alphas': [[0.1, 1.0, 10.0]]
+    }
 }
 
 data_path = 'data/processed/ACME-HappinessSurvey2020.csv' 
@@ -163,7 +177,7 @@ models_output
 
 import mlflow
 
-mlflow_tracking_uri = 'http://localhost:5555'  
+mlflow_tracking_uri = 'http://localhost:5000'  
 if mlflow_tracking_uri:
     mlflow.set_tracking_uri(mlflow_tracking_uri)
     mlflow.set_experiment("Customer_Happiness")
@@ -212,12 +226,60 @@ def evaluate_model_with_gridsearch(name, model, grid, X_train, y_train, X_test, 
 
 print("MLflow tracking URI:", mlflow_tracking_uri)
 
-results = {}
+def evaluate_model_with_gridsearch(name, model, grid, X_train, y_train, X_test, y_test):
+    if grid:
+        clf = GridSearchCV(model, grid, cv=5, scoring='accuracy', n_jobs=-1)
+        clf.fit(X_train, y_train)
+        best_model = clf.best_estimator_
+        best_params = clf.best_params_
+    else:
+        model.fit(X_train, y_train)
+        best_model = model
+        best_params = model.get_params()
 
+    y_pred = best_model.predict(X_test)
+    mae = mean_absolute_error(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+    rmse = np.sqrt(mse)
+    r2 = r2_score(y_test, y_pred)
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+    
+    if hasattr(best_model, "predict_proba"):
+        y_scores = best_model.predict_proba(X_test)[:, 1]
+    
+    elif hasattr(best_model, "decision_function"):
+        y_scores = best_model.decision_function(X_test)
+    else:
+        y_scores = best_model.predict(X_test)
+
+    roc_auc = roc_auc_score(y_test, y_scores)
+
+    
+    return {
+        'accuracy': accuracy,
+        'mae': mae,
+        'mse': mse,
+        'rmse': rmse,
+        'r2': r2,
+        'f1_score': f1,
+        'roc_auc': roc_auc,
+        'model': best_model,
+        'params': best_params
+    }
+
+print("MLflow tracking URI:", mlflow_tracking_uri)
+
+results = {}
 with mlflow.start_run(run_name="Customer_Happiness") if mlflow_tracking_uri else nullcontext():
     for name, model in models.items():
         with mlflow.start_run(run_name=name, nested=True) if mlflow_tracking_uri else nullcontext():
+            
+        
+            print("Current name:", name)
+            print("model", model)
             evaluation = evaluate_model_with_gridsearch(name, model, model_grids[name], X_train, y_train, X_test, y_test)
+            print("Returned keys:", evaluation)
             results[name] = evaluation
 
             if mlflow_tracking_uri:
@@ -282,3 +344,7 @@ with open(config_path, 'w') as f:
     yaml.dump(model_config, f)
 
 print(f"Saved model config to {config_path}")
+
+
+
+
