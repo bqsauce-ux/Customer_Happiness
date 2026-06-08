@@ -230,7 +230,7 @@ results = {}
 with mlflow.start_run(run_name="Customer_Happiness") if mlflow_tracking_uri else nullcontext():
     for name, model in models.items():
         with mlflow.start_run(run_name=name, nested=True) if mlflow_tracking_uri else nullcontext():
-            evaluation = evaluate_model_with_gridsearch(name, model, grid[name], X_train, y_train, X_test, y_test)
+            evaluation = evaluate_model_with_gridsearch(name, model, model_grids[name], X_train, y_train, X_test, y_test)
             results[name] = evaluation
 
             if mlflow_tracking_uri:
