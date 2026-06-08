@@ -163,7 +163,7 @@ models
 
 import mlflow
 
-mlflow_tracking_uri = 'http://localhost:5555'  
+mlflow_tracking_uri = 'http://localhost:5000'  
 if mlflow_tracking_uri:
     mlflow.set_tracking_uri(mlflow_tracking_uri)
     mlflow.set_experiment("Customer_Happiness")
