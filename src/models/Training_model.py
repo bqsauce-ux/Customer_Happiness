@@ -276,7 +276,7 @@ model_config = {
 }
 
 print(model_config)
-config_path = '../../src/models/model_config.yaml'
+config_path = 'src/models/model_config.yaml'
 os.makedirs(os.path.dirname(config_path), exist_ok=True)
 with open(config_path, 'w') as f:
     yaml.dump(model_config, f)
