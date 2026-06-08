@@ -84,7 +84,6 @@ jobs:
 
       - name: Train model
         run: |
-          mkdir -p models
           python src/models/training_model.py
 
       - name: Upload trained model
