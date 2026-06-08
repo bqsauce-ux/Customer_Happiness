@@ -61,7 +61,11 @@ models = {
 
 model_grids = {
 
-    'LogisticRegression': {},
+    'LogisticRegression': {
+        'C': [0.01, 0.1, 1, 10],
+        'penalty': ['l2'],
+        'solver': ['lbfgs']
+    },
 
     'RandomForestClassifier': {
         'n_estimators': [100, 200, 300],
@@ -97,9 +101,13 @@ model_grids = {
         'alpha': [0.1, 0.5, 1.0]
     },
 
-    'GaussianNB': {},
+    'GaussianNB': {
+        'var_smoothing': [1e-9, 1e-8, 1e-7]
+    },
 
-    'NearestCentroid': {},
+    'NearestCentroid': {
+        'metric': ['euclidean', 'manhattan']
+    },
 
     'Perceptron': {
         'penalty': [None, 'l2'],
@@ -112,7 +120,9 @@ model_grids = {
         'alpha': [0.1, 1.0, 10.0]
     },
 
-    'RidgeClassifierCV': {}
+    'RidgeClassifierCV': {
+        alphas': [[0.1, 1.0, 10.0]]
+    }
 }
 
 data_path = 'data/processed/ACME-HappinessSurvey2020.csv' 
