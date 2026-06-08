@@ -270,6 +270,7 @@ def evaluate_model_with_gridsearch(name, model, grid, X_train, y_train, X_test, 
 
 print("MLflow tracking URI:", mlflow_tracking_uri)
 
+results = {}
 with mlflow.start_run(run_name="Customer_Happiness") if mlflow_tracking_uri else nullcontext():
     for name, model in models.items():
         with mlflow.start_run(run_name=name, nested=True) if mlflow_tracking_uri else nullcontext():
