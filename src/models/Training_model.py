@@ -23,7 +23,9 @@ import matplotlib.pyplot as plt
 
 import numpy as np
 import pandas as pd
+import os
 
+print("🔥 RUNNING FILE:", os.path.abspath(__file__))
 
 # Define models and hyperparameter grids
 models = {
