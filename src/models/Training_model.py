@@ -177,7 +177,7 @@ models_output
 
 import mlflow
 
-mlflow_tracking_uri = 'http://localhost:5555'  
+mlflow_tracking_uri = 'http://localhost:5000'  
 if mlflow_tracking_uri:
     mlflow.set_tracking_uri(mlflow_tracking_uri)
     mlflow.set_experiment("Customer_Happiness")
@@ -337,7 +337,7 @@ model_config = {
 }
 
 print(model_config)
-config_path = '../../src/models/model_config.yaml'
+config_path = 'src/models/model_config.yaml'
 os.makedirs(os.path.dirname(config_path), exist_ok=True)
 with open(config_path, 'w') as f:
     yaml.dump(model_config, f)
