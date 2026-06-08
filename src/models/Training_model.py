@@ -114,7 +114,9 @@ model_grids = {
         'alpha': [0.0001, 0.001]
     },
 
-    'LinearDiscriminantAnalysis': {},
+    'LinearDiscriminantAnalysis': {
+        'solver' = ['svd', 'lsqr', 'eigen']
+    },
 
     'RidgeClassifier': {
         'alpha': [0.1, 1.0, 10.0]
@@ -180,118 +182,4 @@ mlflow_tracking_uri = 'http://localhost:5000'
 if mlflow_tracking_uri:
     mlflow.set_tracking_uri(mlflow_tracking_uri)
     mlflow.set_experiment("Customer_Happiness")
-
-def evaluate_model_with_gridsearch(name, model, grid, X_train, y_train, X_test, y_test):
-    if grid:
-        clf = GridSearchCV(model, grid, cv=5, scoring='accuracy', n_jobs=-1)
-        clf.fit(X_train, y_train)
-        best_model = clf.best_estimator_
-        best_params = clf.best_params_
-    else:
-        model.fit(X_train, y_train)
-        best_model = model
-        best_params = model.get_params()
-
-    y_pred = best_model.predict(X_test)
-    mae = mean_absolute_error(y_test, y_pred)
-    mse = mean_squared_error(y_test, y_pred)
-    rmse = np.sqrt(mse)
-    r2 = r2_score(y_test, y_pred)
-    accuracy = accuracy_score(y_test, y_pred)
-    f1 = f1_score(y_test, y_pred)
-    
-    if hasattr(best_model, "predict_proba"):
-        y_scores = best_model.predict_proba(X_test)[:, 1]
-    
-    elif hasattr(best_model, "decision_function"):
-        y_scores = best_model.decision_function(X_test)
-    else:
-        y_scores = best_model.predict(X_test)
-
-    roc_auc = roc_auc_score(y_test, y_scores)
-
-    
-    return {
-        'accuracy': accuracy,
-        'mae': mae,
-        'mse': mse,
-        'rmse': rmse,
-        'r2': r2,
-        'f1_score': f1,
-        'roc_auc': roc_auc,
-        'model': best_model,
-        'params': best_params
-    }
-
-print("MLflow tracking URI:", mlflow_tracking_uri)
-
-results = {}
-
-with mlflow.start_run(run_name="Customer_Happiness") if mlflow_tracking_uri else nullcontext():
-    for name, model in models.items():
-        with mlflow.start_run(run_name=name, nested=True) if mlflow_tracking_uri else nullcontext():
-            evaluation = evaluate_model_with_gridsearch(name, model, model_grids[name], X_train, y_train, X_test, y_test)
-            results[name] = evaluation
-
-            if mlflow_tracking_uri:
-                mlflow.log_params(evaluation['params'])
-                mlflow.log_metrics({
-                    'accuracy': evaluation['accuracy'],  
-                    'mae': evaluation['mae'],
-                    'mse': evaluation['mse'],
-                    'rmse': evaluation['rmse'],
-                    'r2': evaluation['r2'],
-                    'f1_score': evaluation['f1_score'],
-                    'roc_auc': evaluation['roc_auc']
-                })
-                
-            
-            print(
-            f"{name} accuracy: {evaluation['accuracy']:.4f}, "
-            f"R2: {evaluation['r2']:.4f}, "
-            f"RMSE: {evaluation['rmse']:.2f}, "
-            f"f1_score: {evaluation['f1_score']:.4f}, "
-            f"ROC_AUC: {evaluation['roc_auc']:.4f}"
-            )
-
-import yaml
-import os
-# Save model config with selected features 
-# Display information about the best model
-best_model_name = max(results, key=lambda x: results[x]['accuracy'])
-best_model = results[best_model_name]['model']
-best_params = best_model.get_params()
-best_accuracy = float(results[best_model_name]['accuracy'])
-best_mae = float(results[best_model_name]['mae'])
-best_rmse = float(results[best_model_name]['rmse'])
-best_f1_score = float(results[best_model_name]['f1_score'])
-best_roc_auc_score = float(results[best_model_name]['roc_auc'])
-
-print(f"🏆 Best Model: {best_model_name}")
-print(f"   Accuracy: {best_accuracy:.4f}")
-print(f"   f1 Score: {best_f1_score:.4f}")
-print(f"   ROC_AUC: {best_roc_auc_score:.4f}")
-print(f"   MAE: {best_mae:.4f}")
-print(f"   RMSE: {best_rmse:.4f}")
-
-model_config = {
-    'model': {
-        'name': 'happiness_model',
-        'best_model': best_model_name,
-        'parameters': best_params,
-        'accuracy': best_accuracy,
-        'mae': best_mae,
-        'best_f1_score': best_f1_score,
-        'best_roc_auc_score': best_roc_auc_score,
-        'target_variable': 'Y',
-        'feature_sets': selected_features_dict
-    }
-}
-
-print(model_config)
-config_path = 'src/models/model_config.yaml'
-os.makedirs(os.path.dirname(config_path), exist_ok=True)
-with open(config_path, 'w') as f:
-    yaml.dump(model_config, f)
-
-print(f"Saved model config to {config_path}")
+#
