@@ -157,9 +157,9 @@ X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
 clf = LazyClassifier(verbose=1,ignore_warnings=True, custom_metric=None, random_state = 42)
-models,predictions = clf.fit(X_train, X_test, y_train, y_test)
+models_output,predictions = clf.fit(X_train, X_test, y_train, y_test)
 
-models
+models_output
 
 import mlflow
 
