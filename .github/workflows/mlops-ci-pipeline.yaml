@@ -32,6 +32,12 @@ jobs:
       - name: Process data
         run: |
           python src/data/Preprocessing.py 
+          
+      - name: Upload processed data
+        uses: actions/upload-artifact@v4
+        with:
+          name: processed-data
+          path: data/processed/ACME-HappinessSurvey2020.csv
 
   model-training:
     needs: data-processing
