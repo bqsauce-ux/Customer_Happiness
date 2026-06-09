@@ -2,10 +2,15 @@ from fastapi import FastAPI
 import joblib
 import pandas as pd
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+model_path = BASE_DIR / "src" / "models" / "best_model.joblib"
+
+model = joblib.load(model_path)
 app = FastAPI()
 
 # load your trained model
-model = joblib.load("src/models/best_model.joblib")
 
 
 @app.get("/")
