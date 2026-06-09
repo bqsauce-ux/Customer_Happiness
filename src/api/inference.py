@@ -8,7 +8,7 @@ model = joblib.load(MODEL_PATH)
 
 # load your trained model
 
-def predict_happiness(request: CustomerHappinessRequest -> PredictionResponse:
+def predict_happiness(request: CustomerHappinessRequest) -> PredictionResponse:
     
     df = pd.DataFrame([data])
     prediction = model.predict(df)[0]
