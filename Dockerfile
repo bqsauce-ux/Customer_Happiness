@@ -3,6 +3,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 COPY src/api/ .
+COPY src/models/best_model.joblib
 
 RUN pip install -r requirements.txt
 
