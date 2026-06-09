@@ -2,7 +2,7 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY setup/ .
+COPY src/models/ .
 
 RUN pip install -r requirements.txt
 
