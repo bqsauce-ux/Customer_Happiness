@@ -135,4 +135,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: docker.io/marlesque/Customer_Happiness:latest
+          tags: docker.io/marlesque/customer-happiness:latest
