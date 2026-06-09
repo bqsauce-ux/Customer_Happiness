@@ -141,3 +141,17 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: docker.io/marlesque/customer-happiness:latest
+  
+  deploy:
+
+    needs: build-and-publish
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Deploy
+        run: |
+          aws ecs update-service \
+          --cluster customer-happiness \
+          --service customer-api \
+          --force-new-deployment
