@@ -2,12 +2,8 @@ from fastapi import FastAPI
 import joblib
 import pandas as pd
 
-from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
-model_path = BASE_DIR / "src" / "models" / "best_model.joblib"
-
-model = joblib.load(model_path)
+model = joblib.load("best_model.joblib")
 app = FastAPI()
 
 # load your trained model
@@ -15,7 +11,7 @@ app = FastAPI()
 
 @app.get("/")
 def home():
-    return {"message": "Customer Happiness API is running 🚀"}
+    return {"message": "Customer Happiness API is running "}
 
 
 @app.post("/predict")
