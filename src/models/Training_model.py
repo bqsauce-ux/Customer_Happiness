@@ -25,6 +25,16 @@ import numpy as np
 import pandas as pd
 import os
 
+import joblib
+
+
+# Create models directory
+os.makedirs("models", exist_ok=True)
+
+# Save best model
+joblib.dump(best_model, "models/best_model.joblib")
+
+print("Best model saved successfully")
 
 # Define models and hyperparameter grids
 models = {
@@ -345,6 +355,11 @@ with open(config_path, 'w') as f:
 
 print(f"Saved model config to {config_path}")
 
+
+# Save best model
+joblib.dump(best_model, "src/models/best_model.joblib")
+
+print("Best model saved successfully")
 
 
 
