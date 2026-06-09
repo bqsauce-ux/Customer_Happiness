@@ -156,7 +156,7 @@ jobs:
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
-
+          sleep 10
           git clone https://user:${HF_TOKEN}@huggingface.co/spaces/marlesque/customer-happiness hf-space
 
           rsync -av --exclude='.git' . hf-space/
