@@ -3,7 +3,7 @@ import pandas as pd
 from datetime import datetime
 from schemas import CustomerHappinessRequest, PredictionResponse
 
-MODEL_PATH = "best_model.joblib"
+MODEL_PATH = "models/best_model.joblib"
 model = joblib.load(MODEL_PATH)
 
 # load your trained model
