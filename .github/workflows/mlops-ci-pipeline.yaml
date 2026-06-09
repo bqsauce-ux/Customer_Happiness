@@ -143,16 +143,27 @@ jobs:
           tags: docker.io/marlesque/customer-happiness:latest
   
   deploy:
-
     needs: build-and-publish
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Deploy
+      - name: Push to Hugging Face Space
+        env:
+          HF_TOKEN: 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
         run: |
-          aws ecs update-service \
-          --region us-east-1 \
-          --cluster customer-happiness \
-          --service customer-api \
-          --force-new-deployment
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+
+          git clone https://user:${HF_TOKEN}@huggingface.co/spaces/YOUR_USERNAME/customer-happiness-space hf-space
+
+          rsync -av --exclude='.git' . hf-space/
+
+          cd hf-space
+
+          git add .
+          git commit -m "Auto deploy from GitHub Actions" || echo "No changes"
+
+          git push
