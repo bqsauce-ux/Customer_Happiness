@@ -91,7 +91,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: trained-model
-          path: models/
+          path: src/models/model_config.yaml
 
       - name: Clean up MLflow
         run: |
@@ -110,13 +110,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: trained-model
-          path: models/
-
-      - name: Download preprocessor
-        uses: actions/download-artifact@v4
-        with:
-          name: preprocessor
-          path: models/trained/
+          path: src/models/model_config.yaml
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
