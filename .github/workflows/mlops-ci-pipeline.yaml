@@ -152,6 +152,7 @@ jobs:
       - name: Deploy
         run: |
           aws ecs update-service \
+          --region us-east-1 \
           --cluster customer-happiness \
           --service customer-api \
           --force-new-deployment
