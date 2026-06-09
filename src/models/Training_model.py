@@ -28,14 +28,6 @@ import os
 import joblib
 
 
-# Create models directory
-os.makedirs("models", exist_ok=True)
-
-# Save best model
-joblib.dump(best_model, "models/best_model.joblib")
-
-print("Best model saved successfully")
-
 # Define models and hyperparameter grids
 models = {
     'LogisticRegression': LogisticRegression(),
@@ -187,10 +179,10 @@ models_output
 
 import mlflow
 
-mlflow_tracking_uri = 'http://localhost:5000'  
+mlflow_tracking_uri = 'http://localhost:5555'  
 if mlflow_tracking_uri:
     mlflow.set_tracking_uri(mlflow_tracking_uri)
-    mlflow.set_experiment("Customer_Happiness")
+    mlflow.set_experiment("customer_happiness")
 
 def evaluate_model_with_gridsearch(name, model, grid, X_train, y_train, X_test, y_test):
     if grid:
