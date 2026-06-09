@@ -152,7 +152,7 @@ jobs:
 
       - name: Push to Hugging Face Space
         env:
-          HF_TOKEN: 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
+          HF_TOKEN: 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
         run: |
           git config --global user.email "github-actions@github.com"
           git config --global user.name "github-actions"
