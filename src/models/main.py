@@ -5,7 +5,7 @@ import pandas as pd
 app = FastAPI()
 
 # load your trained model
-model = joblib.load("models/best_model.joblib")
+model = joblib.load("src/models/best_model.joblib")
 
 
 @app.get("/")
