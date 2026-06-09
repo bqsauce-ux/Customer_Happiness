@@ -10,8 +10,8 @@ model = joblib.load(MODEL_PATH)
 
 def predict_happiness(request: CustomerHappinessRequest) -> PredictionResponse:
     
-    df = pd.DataFrame([data])
-    prediction = model.predict(df)[0]
+    input_data = pd.DataFrame([request.dict()])
+    prediction = model.predict(input_data)[0]
 
     return PredictionResponse(
         predicted_happiness= prediction
