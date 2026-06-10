@@ -1,3 +1,13 @@
+---
+title: Customer Happiness
+emoji: 📊
+colorFrom: blue
+colorTo: green
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 Customer Happiness Project
 
 The objective of the goal is to predict customers' happiness based on the following features of the logistic and delivery company. This is a supervised system, which means that the output of the model is labelled. The labels consist of two binary values, either 0 (unhappy) and 1 (happy). There are 6 variables or features, ranging from 1 to 5 and are defined as the following:
