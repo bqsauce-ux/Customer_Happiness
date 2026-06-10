@@ -16,8 +16,9 @@ def predict_happiness(request: CustomerHappinessRequest) -> PredictionResponse:
     scaler = StandardScaler()
     
     input_data = scaler.fit_transform(input_data)
+    input_data = input_data[['X1', 'X5', 'X6']]
     
-    prediction = model.predict(input_data)[0]
+    prediction = model.predict(input_data)
 
     return PredictionResponse(
         predicted_happiness= prediction
