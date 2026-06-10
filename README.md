@@ -15,6 +15,7 @@ The objective of the goal is to predict customers' happiness based on the follow
 Data Description:
 
 Y = target attribute (Y) with values indicating 0 (unhappy) and 1 (happy) customers
+
 X1 = my order was delivered on time
 
 X2 = contents of my order was as I expected
