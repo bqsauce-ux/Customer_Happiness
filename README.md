@@ -39,7 +39,7 @@ I have used the xgboost model with binary:logistic as the objective and an assig
 
 As you can see from the model_config.yaml file, the best features are [X1, X5, X6]. This corresponds with the earlier prediction we had in EDA. As part of the preprocessing, I imported StandardScaler() and then fit-transformed it into input data, which is fed into the model.
 
-I used mlflow package to track the different runs and it is hosted on the following URL: http://localhost/5555. It is convenient for tracking each run and stores the metrics in a centralized location. I have defined a function called evaluate_model_with_grid which takes a model and determines the best hyperparameters for the said model and records its accuracy, mae, mse, rmse, r2, f1_score, and roc_auc. Later, the model with the highest accuracy is selected and stored in a .joblib file called best_model.joblib and its configuration in a .yaml file called model_config.yaml. 
+I used mlflow package to track the different runs and it is hosted on the 5555 port. It is convenient for tracking each run and stores the metrics in a centralized location. I have defined a function called evaluate_model_with_grid which takes a model and determines the best hyperparameters for the said model and records its accuracy, mae, mse, rmse, r2, f1_score, and roc_auc. Later, the model with the highest accuracy is selected and stored in a .joblib file called best_model.joblib and its configuration in a .yaml file called model_config.yaml. 
 
 Creating the API
 
