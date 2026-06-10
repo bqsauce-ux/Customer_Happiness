@@ -8,7 +8,7 @@ app_port: 7860
 pinned: false
 ---
 
-Customer Happiness Project
+## Customer Happiness Project
 
 The objective of the goal is to predict customers' happiness based on the following features of the logistic and delivery company. This is a supervised system, which means that the output of the model is labelled. The labels consist of two binary values, either 0 (unhappy) and 1 (happy). There are 6 variables or features, ranging from 1 to 5 and are defined as the following:
 
@@ -32,7 +32,7 @@ Exploratory Data Analysis & Preprocessing
 
 This section is dedicated to uncovering different proprocessing methods to either remove outliers or replace them with the median value of the data points. I used a box-and-whisker plot to identify those outliers, which result in the skewness of the data (either left-skewed or right-skewed). Therefore, the approach I used is to replace the outliers with median of the column and the histogram later turned out more evenly distributed and showed less skewness. I also plotted a correlation chart, which shows the correlation for every paired combination between all the predictors and the label. Here you can see, as compared with Y, X1 has the greatest correlation (0.25), followed by X5 (0.18) and X6 (0.19). This later confirms our findings for feature selection, in which this combination (X1, X5, X6) gives the most accurate set of predictors for Y. 
 
-Training models
+## Training models
 
 The mission here is to train the dataset with all the possible machine learning algorithms. i also used a classifier package called LazyClassifier, which consists of different machine learning algorithms that are not included in the classifiers I have defined manually. 
 
@@ -51,7 +51,7 @@ However, the manually defined classifiers I was able to capture here are:
 - Ridge Classifier CV
 - XGBoostClassifier
 
-Feature Selection
+## Feature Selection
 I have used the xgboost model with binary:logistic as the objective and an assigned random state of 42. Here, I specified the number of features to 3 and the result used further along to train the model with the best selected features. 
 
 As you can see from the model_config.yaml file, the best features are [X1, X5, X6]. This corresponds with the earlier prediction we had in EDA. As part of the preprocessing, I imported StandardScaler() and then fit-transformed it into input data, which is fed into the model.
@@ -84,7 +84,7 @@ Here is the outcome of the evaluation of different machine learning algorithms.
 |--------|----------|----------|----------|
 | XGBoost | **0.8077** | **0.8276** | **0.8363** |
 
-Creating the API
+## Creating the API
 
 I created a directory src/api/ in which I stored four different .py files used to create the API:
 
@@ -94,7 +94,7 @@ main.py : initializes FastAPI with metadata, add the CORS middleware. Then, I co
 
 Schemas.py: initializes CustomerHappinessRequest with different fields and PredictionResponse with predicted_happiness.
 
-Continuous Integration and Continuous Deployment
+## Continuous Integration and Continuous Deployment
 
 I stored this yaml file in .github/workflows/ and this is triggered automatically when there is any pull or push request. I divided the workflow to 4 different stages, which are data processing, training the model, build and publish, and deploy to Hugging Face. Once CICD pipeline finishes running, one can find an interactive UI in which one can adjust the different values for X1 through X6 and receive an output signaling either 0 or 1.
 
