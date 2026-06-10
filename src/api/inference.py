@@ -12,12 +12,9 @@ model = joblib.load(MODEL_PATH)
 def predict_happiness(request: CustomerHappinessRequest) -> PredictionResponse:
     
     input_data = pd.DataFrame([request.dict()])
-    
+    input_data = input_data[['X1', 'X5', 'X6']]    
     scaler = StandardScaler()
-    
     input_data = scaler.fit_transform(input_data)
-    input_data = input_data[['X1', 'X5', 'X6']]
-    
     prediction = model.predict(input_data)
 
     return PredictionResponse(
