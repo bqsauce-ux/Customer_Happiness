@@ -16,10 +16,15 @@ Data Description:
 
 Y = target attribute (Y) with values indicating 0 (unhappy) and 1 (happy) customers
 X1 = my order was delivered on time
+
 X2 = contents of my order was as I expected
+
 X3 = I ordered everything I wanted to order
+
 X4 = I paid a good price for my order
+
 X5 = I am satisfied with my courier
+
 X6 = the app makes ordering easy for me
 
 Exploratory Data Analysis & Preprocessing
@@ -43,6 +48,7 @@ However, the manually defined classifiers I was able to capture here are:
 - Linear Discriminant Analysis
 - Ridge Classifier
 - Ridge Classifier CV
+- XGBoostClassifier
 
 Feature Selection
 I have used the xgboost model with binary:logistic as the objective and an assigned random state of 42. Here, I specified the number of features to 3 and the result used further along to train the model with the best selected features. 
