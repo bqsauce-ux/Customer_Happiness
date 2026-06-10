@@ -58,6 +58,24 @@ As you can see from the model_config.yaml file, the best features are [X1, X5, X
 
 I used mlflow package to track the different runs and it is hosted on the 5555 port. It is convenient for tracking each run and stores the metrics in a centralized location. I have defined a function called evaluate_model_with_grid which takes a model and determines the best hyperparameters for the said model and records its accuracy, mae, mse, rmse, r2, f1_score, and roc_auc. Later, the model with the highest accuracy is selected and stored in a .joblib file called best_model.joblib and its configuration in a .yaml file called model_config.yaml. 
 
+Here is the outcome of the evaluation of different machine learning algorithms.
+
+Classifier	accuracy	mae	mse	rmse	r2	f1_score	roc_auc	model	params
+0	LogisticRegression	0.653846	0.346154	0.346154	0.588348	-0.392857	0.727273	0.770833	LogisticRegression()	{'C': 1.0, 'class_weight': None, 'dual': False...
+1	RandomForestClassifier	0.769231	0.230769	0.230769	0.480384	0.071429	0.8125	0.758929	(DecisionTreeClassifier(max_depth=5, max_featu...	{'max_depth': 5, 'n_estimators': 100}
+2	GradientBoosting	0.769231	0.230769	0.230769	0.480384	0.071429	0.8125	0.75	([DecisionTreeRegressor(criterion='friedman_ms...	{'learning_rate': 0.2, 'max_depth': 5, 'n_esti...
+3	XGBoostClassifier	0.807692	0.192308	0.192308	0.438529	0.22619	0.827586	0.83631	XGBClassifier(base_score=None, booster=None, c...	{'colsample_bytree': 0.8, 'learning_rate': 0.1...
+4	LGBMClassifier	0.769231	0.230769	0.230769	0.480384	0.071429	0.785714	0.83631	LGBMClassifier(learning_rate=0.05, max_depth=3...	{'learning_rate': 0.05, 'max_depth': 3, 'n_est...
+5	SGDClassifier	0.576923	0.423077	0.423077	0.650444	-0.702381	0.666667	0.491071	SGDClassifier(loss='log_loss', random_state=42)	{'alpha': 0.0001, 'loss': 'log_loss'}
+6	BernoulliNB	0.692308	0.307692	0.307692	0.5547	-0.238095	0.733333	0.747024	BernoulliNB(alpha=0.1)	{'alpha': 0.1}
+7	GaussianNB	0.653846	0.346154	0.346154	0.588348	-0.392857	0.709677	0.800595	GaussianNB()	{'priors': None, 'var_smoothing': 1e-09}
+8	NearestCentroid	0.653846	0.346154	0.346154	0.588348	-0.392857	0.689655	0.78869	NearestCentroid()	{'metric': 'euclidean', 'priors': 'uniform', '...
+9	Perceptron	0.730769	0.269231	0.269231	0.518875	-0.083333	0.787879	0.8125	Perceptron(penalty='l2', random_state=42)	{'alpha': 0.0001, 'penalty': 'l2'}
+10	LinearDiscriminantAnalysis	0.653846	0.346154	0.346154	0.588348	-0.392857	0.727273	0.770833	LinearDiscriminantAnalysis()	{'covariance_estimator': None, 'n_components':...
+11	RidgeClassifier	0.653846	0.346154	0.346154	0.588348	-0.392857	0.727273	0.770833	RidgeClassifier(alpha=0.1)	{'alpha': 0.1}
+12	RidgeClassifierCV	0.653846	0.346154	0.346154	0.588348	-0.392857	0.727273	0.770833	RidgeClassifierCV()	{'alphas': (0.1, 1.0, 10.0), 'class_weight': N...
+
+
 Creating the API
 
 I created a directory src/api/ in which I stored four different .py files used to create the API:
