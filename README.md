@@ -73,39 +73,7 @@ Customer_Happiness/
 ├── requirements.txt
 ├── Dockerfile
 └── README.md
-```
-Customer_Happiness/
-│
-├── data/
-│   ├── raw
-│      ├── ACME-HappinessSurvey2020.csv
-│   ├── processed
-│      ├── ACME-HappinessSurvey2020.csv
-├── src/
-│   ├── api/
-│      ├── inference.py
-│      ├── main.py
-│      ├── schemas.py
-│      ├── requirements.txt
-│   ├── models/
-│      ├── Training_model.py
-│      ├── best_model.joblib
-│      ├── requirements.txt
-│      ├── model_config.yaml
-│   └── data/
-│      ├── Processing.py
-├── notebooks/
-│   ├── exploration
-│      ├── EDA.ipynb
-├── setup/
-│   ├── requirements.txt
-├── requirements.txt
-├── Dockerfile
-├── .github/
-│   └── workflows/
-│       └── mlops-ci-pipeline.yml
-│    ├── .gitignore
-└── README.md
+``` 
 ## Training models
 
 The mission here is to train the dataset with all the possible machine learning algorithms. i also used a classifier package called LazyClassifier, which consists of different machine learning algorithms that are not included in the classifiers I have defined manually. 
