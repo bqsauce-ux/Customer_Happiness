@@ -68,7 +68,7 @@ Customer_Happiness/
 ├── .github/
 │   └── workflows/
 │       └── mlops-ci-pipeline.yaml
-│
+├── HappinessUI.png
 ├── .gitignore
 ├── requirements.txt
 ├── Dockerfile
