@@ -20,7 +20,7 @@ X1 = my order was delivered on time
 
 X2 = contents of my order was as I expected
 
-X3 = I ordered everything I wanted to order
+X3 = I ordered everything I wanted to order=
 
 X4 = I paid a good price for my order
 
@@ -32,6 +32,38 @@ X6 = the app makes ordering easy for me
 
 This section is dedicated to uncovering different proprocessing methods to either remove outliers or replace them with the median value of the data points. I used a box-and-whisker plot to identify those outliers, which result in the skewness of the data (either left-skewed or right-skewed). Therefore, the approach I used is to replace the outliers with median of the column and the histogram later turned out more evenly distributed and showed less skewness. I also plotted a correlation chart, which shows the correlation for every paired combination between all the predictors and the label. Here you can see, as compared with Y, X1 has the greatest correlation (0.25), followed by X5 (0.18) and X6 (0.19). This later confirms our findings for feature selection, in which this combination (X1, X5, X6) gives the most accurate set of predictors for Y. 
 
+Customer_Happiness/
+│
+├── data/
+│   ├── raw
+│      ├── ACME-HappinessSurvey2020.csv
+│   ├── processed
+│      ├── ACME-HappinessSurvey2020.csv
+├── src/
+│   ├── api/
+│      ├── inference.py
+│      ├── main.py
+│      ├── schemas.py
+│      ├── requirements.txt
+│   ├── models/
+│      ├── Training_model.py
+│      ├── best_model.joblib
+│      ├── requirements.txt
+│      ├── model_config.yaml
+│   └── data/
+│      ├── Processing.py
+├── notebooks/
+│   ├── exploration
+│      ├── EDA.ipynb
+├── setup/
+│   ├── requirements.txt
+├── requirements.txt
+├── Dockerfile
+├── .github/
+│   └── workflows/
+│       └── mlops-ci-pipeline.yml
+│    ├── .gitignore
+└── README.md
 ## Training models
 
 The mission here is to train the dataset with all the possible machine learning algorithms. i also used a classifier package called LazyClassifier, which consists of different machine learning algorithms that are not included in the classifiers I have defined manually. 
