@@ -76,7 +76,7 @@ Customer_Happiness/
 ``` 
 ## Training models
 
-The mission here is to train the dataset with all the possible machine learning algorithms. i also used a classifier package called LazyClassifier, which consists of different machine learning algorithms that are not included in the classifiers I have defined manually. 
+The mission here is to train the dataset with all the possible machine learning algorithms. I also used a classifier package called LazyClassifier, which consists of different machine learning algorithms that are not included in the classifiers I have defined manually. 
 
 However, the manually defined classifiers I was able to capture here are:
 - Logistic Regression
@@ -128,7 +128,7 @@ Here is the outcome of the evaluation of different machine learning algorithms.
 
 ## Creating the API
 
-I created a directory src/api/ in which I stored four different .py files used to create the API:
+I created a directory src/api/ in which I stored three different .py files used to create the API:
 
 Inference.py : contains definition of method predict_happiness, which takes the 3 variables [X1, X5, X6], scale the input, and feed this into the best model. Then, a PredictionResponse is returned with the happiness value.
 
