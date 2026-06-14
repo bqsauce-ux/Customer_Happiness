@@ -142,7 +142,7 @@ I stored this yaml file in .github/workflows/ and this is triggered automaticall
 
 Here is a screenshot of the Hugging Face UI which contains two sections, which are get health status and predict response:
 <p align="center">
-  <img src="CustomerHappinessUI.png" width="500">
+  <img src="/CustomerHappinessUI.png" width="500">
 </p>
 
 ## Conclusion
