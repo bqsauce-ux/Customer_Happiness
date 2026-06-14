@@ -140,6 +140,9 @@ Schemas.py: initializes CustomerHappinessRequest with different fields and Predi
 
 I stored this yaml file in .github/workflows/ and this is triggered automatically when there is any pull or push request. I divided the workflow to 4 different stages, which are data processing, training the model, build and publish, and deploy to Hugging Face. Once CICD pipeline finishes running, one can find an interactive UI in which one can adjust the different values for X1 through X6 and receive an output signaling either 0 or 1.
 
+Here is a screenshot of the Hugging Face UI which contains two sections, which are get health status and predict response:
+
+
 ## Conclusion
 
 It was determined that the best set of features to predict a customer's happiness is [X1, X5, X6] and the best machine learning algorithm is xgboost classifier, which gives an accuracy level of approximately 0.81 and f1 score of 0.83.
