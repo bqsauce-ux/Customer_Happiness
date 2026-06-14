@@ -142,7 +142,7 @@ I stored this yaml file in .github/workflows/ and this is triggered automaticall
 
 Here is a screenshot of the Hugging Face UI which contains two sections, which are get health status and predict response:
 
-<img src= "CustomerHappinessUI.png" alt= "Diagram" width = "600"/>
+<img src= "HappinessUI.png" alt= "Diagram" width = "600"/>
 ## Conclusion
 
 It was determined that the best set of features to predict a customer's happiness is [X1, X5, X6] and the best machine learning algorithm is xgboost classifier, which gives an accuracy level of approximately 0.81 and f1 score of 0.83.
