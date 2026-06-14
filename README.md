@@ -20,7 +20,7 @@ X1 = my order was delivered on time
 
 X2 = contents of my order was as I expected
 
-X3 = I ordered everything I wanted to order=
+X3 = I ordered everything I wanted to order
 
 X4 = I paid a good price for my order
 
