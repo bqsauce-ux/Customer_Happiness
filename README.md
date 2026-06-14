@@ -67,7 +67,7 @@ Customer_Happiness/
 │
 ├── .github/
 │   └── workflows/
-│       └── mlops-ci-pipeline.yml
+│       └── mlops-ci-pipeline.yaml
 │
 ├── .gitignore
 ├── requirements.txt
