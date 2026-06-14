@@ -142,8 +142,9 @@ I stored this yaml file in .github/workflows/ and this is triggered automaticall
 
 Here is a screenshot of the Hugging Face UI which contains two sections, which are getting health status and predicting response:
 
-<img src= "HappinessUI.png" alt= "Diagram" width = "600"/>
+## <img src= "HappinessUI.png" alt= "Diagram" width = "600"/>
 
+![Happiness UI](HappinessUI.png)
 You can use the predict functionality to determine the predicted happiness value using any combination of the six predictors.
 
 ## Conclusion
